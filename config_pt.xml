@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<module>
+    <name>wkonepagecheckout</name>
+    <displayName><![CDATA[Prestashop One Page Checkout]]></displayName>
+    <version><![CDATA[4.2.2]]></version>
+    <description><![CDATA[Complete checkout process on a single page]]></description>
+    <author><![CDATA[Webkul]]></author>
+    <tab><![CDATA[front_office_features]]></tab>
+    <is_configurable>1</is_configurable>
+    <need_instance>1</need_instance>
+	<limited_countries></limited_countries>
+</module>

@@ -1,0 +1,334 @@
+{**
+* 2010-2020 Webkul.
+*
+* NOTICE OF LICENSE
+*
+* All right is reserved,
+* Please go through this link for complete license : https://store.webkul.com/license.html
+*
+* DISCLAIMER
+*
+* Do not edit or add to this file if you wish to upgrade this module to newer
+* versions in the future. If you wish to customize this module for your
+* needs please refer to https://store.webkul.com/customisation-guidelines/ for more information.
+*
+*  @author    Webkul IN <support@webkul.com>
+*  @copyright 2010-2020 Webkul IN
+*  @license   https://store.webkul.com/license.html
+*}
+
+<div id="wk-delivery-address-form">
+	<div class="wk-delivery-address-form">
+		<form method="POST" action="#" id="wk-delivery-form">
+			<input type="hidden" name="data-type" value="delivery" id="delivery">
+			<input type="hidden" name="id-new-delivery-address" value="{if isset($delivery_address)}{$delivery_address->id}{/if}" id="id-new-delivery-address">
+
+			{if Configuration::get('WK_CHECKOUT_DELIVERY_ALIAS_SHOW')}
+			<div class="form-group">
+				<label class="label-control {if Configuration::get('WK_CHECKOUT_DELIVERY_ALIAS_REQ')}required{/if}">{l s='Address Alias' mod='wkonepagecheckout'}
+				</label>
+				<input
+					maxlength="32"
+					{if Configuration::get('WK_CHECKOUT_DELIVERY_ALIAS_REQ')}data-required="1"{else}data-required="0"{/if}
+					data-validate="isGenericName"
+					type="text"
+					name="wk_delivery_address_alias"
+					id="wk_delivery_address_alias"
+					value="{if isset($delivery_address)}{$delivery_address->alias}{/if}"
+					class="form-control wkvalidatefield">
+				<i class="material-icons wk-check-icon wkhide icon_wk_delivery_address_alias">&#xE876;</i>
+				<i class="material-icons wk-error-icon wkhide error_wk_delivery_address_alias">&#xE001;</i>
+				<span class="help-block wk-error wk_delivery_address_alias"></span>
+			</div>
+			{/if}
+
+			<div class="form-group">
+				<label class="label-control required">{l s='First Name' mod='wkonepagecheckout'}</label>
+					<input
+						maxlength="32"
+						data-required="1"
+						data-validate="isName"
+						type="text"
+						name="wk_delivery_first_name"
+						id="wk_delivery_first_name"
+						class="form-control wkvalidatefield"
+						value="{if isset($delivery_address)}{$delivery_address->firstname}{else}{$customer['firstname']}{/if}">
+					<i class="material-icons wk-check-icon wkhide icon_wk_delivery_first_name">&#xE876;</i>
+					<i class="material-icons wk-error-icon wkhide error_wk_delivery_first_name">&#xE001;</i>
+					<span class="help-block wk-error wk_delivery_first_name"></span>
+			</div>
+
+			<div class="form-group">
+				<label class="label-control required">{l s='Last Name' mod='wkonepagecheckout'}</label>
+				<input
+					maxlength="32"
+					data-required="1"
+					data-validate="isName"
+					type="text"
+					name="wk_delivery_last_name"
+					id="wk_delivery_last_name"
+					value="{if isset($delivery_address)}{$delivery_address->lastname}{else}{$customer['lastname']}{/if}"
+					class="form-control wkvalidatefield">
+				<i class="material-icons wk-check-icon wkhide icon_wk_delivery_last_name">&#xE876;</i>
+				<i class="material-icons wk-error-icon wkhide error_wk_delivery_last_name">&#xE001;</i>
+				<span class="help-block wk-error wk_delivery_last_name"></span>
+			</div>
+
+			{if Configuration::get('WK_CHECKOUT_DELIVERY_COMPANY_SHOW')}
+			<div class="form-group">
+				<label class="label-control {if Configuration::get('WK_CHECKOUT_DELIVERY_COMPANY_REQ')}required{/if}">{l s='Company' mod='wkonepagecheckout'}
+				</label>
+				<input
+					maxlength="64"
+					{if Configuration::get('WK_CHECKOUT_DELIVERY_COMPANY_REQ')}data-required="1"{else}data-required="0"{/if}
+					data-validate="isGenericName"
+					type="text"
+					name="wk_delivery_company_name"
+					id="wk_delivery_company_name"
+					value="{if isset($delivery_address)}{$delivery_address->company}{else}{$customer.addresses.{$cart.id_address_delivery}.company}{/if}"
+					class="form-control wkvalidatefield">
+				<i class="material-icons wk-check-icon wkhide icon_wk_delivery_company_name">&#xE876;</i>
+				<i class="material-icons wk-error-icon wkhide error_wk_delivery_company_name">&#xE001;</i>
+				<span class="help-block wk-error wk_delivery_company_name"></span>
+			</div>
+			{/if}
+
+			{if Configuration::get('WK_CHECKOUT_DELIVERY_VAT_SHOW')}
+			<div class="form-group">
+				<label class="label-control {if Configuration::get('WK_CHECKOUT_DELIVERY_VAT_REQ')}required{/if}">{l s='VAT Number' mod='wkonepagecheckout'}
+				</label>
+				<input
+					{if Configuration::get('WK_CHECKOUT_DELIVERY_VAT_REQ')}data-required="1"{else}data-required="0"{/if}
+					data-validate="isDniLite"
+					type="text"
+					name="wk_delivery_vat_info"
+					id="wk_delivery_vat_info"
+					value="{if isset($delivery_address)}{$delivery_address->vat_number}{else}{$customer.addresses.{$cart.id_address_delivery}.dni}{/if}"
+					class="form-control wkvalidatefield">
+				<i class="material-icons wk-check-icon wkhide icon_wk_delivery_vat_info">&#xE876;</i>
+				<i class="material-icons wk-error-icon wkhide error_wk_delivery_vat_info">&#xE001;</i>
+				<span class="help-block wk-error wk_delivery_vat_info"></span>
+			</div>
+			{/if}
+
+			<div class="form-group">
+				<label class="label-control required">{l s='Address' mod='wkonepagecheckout'}</label>
+				<input
+					maxlength="128"
+					data-required="1"
+					data-validate="isAddress"
+					type="text"
+					name="wk_delivery_address_info"
+					id="wk_delivery_address_info"
+					value="{if isset($delivery_address)}{$delivery_address->address1}{/if}"
+					class="form-control wkvalidatefield">
+				<i class="material-icons wk-check-icon wkhide icon_wk_delivery_address_info">&#xE876;</i>
+				<i class="material-icons wk-error-icon wkhide error_wk_delivery_address_info">&#xE001;</i>
+				<span class="help-block wk-error wk_delivery_address_info"></span>
+			</div>
+
+			{if Configuration::get('WK_CHECKOUT_DELIVERY_NUMBER_SHOW')}
+			<div class="form-group">
+				<label class="label-control {if Configuration::get('WK_CHECKOUT_DELIVERY_NUMBER_REQ')}required{/if}">{l s='Number' mod='wkonepagecheckout'}
+				</label>
+				<input
+					{if Configuration::get('WK_CHECKOUT_DELIVERY_NUMBER_REQ')}data-required="1"{else}data-required="0"{/if}
+					data-validate="isGenericName"
+					type="text"
+					name="wk_delivery_number"
+					id="wk_delivery_number"
+					value="{if isset($delivery_address)}{$delivery_address->number}{/if}"
+					class="form-control wkvalidatefield">
+				<i class="material-icons wk-check-icon wkhide icon_wk_delivery_number">&#xE876;</i>
+				<i class="material-icons wk-error-icon wkhide error_wk_delivery_number">&#xE001;</i>
+				<span class="help-block wk-error wk_delivery_number"></span>
+			</div>
+			{/if}
+
+			{* Adriana - 15/07/2020 - início *}
+			{*
+			{if Configuration::get('WK_CHECKOUT_DELIVERY_ADDRESS_COMPANY_SHOW')}
+			*}
+			{if Configuration::get('WK_CHECKOUT_DELIVERY_ADDRESS_COMPLEM_SHOW')}
+			{* Adriana - 15/07/2020 - fim *}
+			<div class="form-group">
+				{* Adriana - 15/07/2020 - início *}
+				{*
+				<label class="label-control {if Configuration::get('WK_CHECKOUT_DELIVERY_ADDRESS_COMPANY_REQ')}required{/if}">{l s='Address Complement' mod='wkonepagecheckout'}
+				*}
+				<label class="label-control {if Configuration::get('WK_CHECKOUT_DELIVERY_ADDRESS_COMPLEM_REQ')}required{/if}">{l s='Address Complement' mod='wkonepagecheckout'}
+				{* Adriana - 15/07/2020 - fim *}
+				</label>
+				<input
+					maxlength="128"
+					{* Adriana - 15/07/2020 - início *}
+					{*
+					{if Configuration::get('WK_CHECKOUT_DELIVERY_ADDRESS_COMPANY_REQ')}data-required="1"{else}data-required="0"{/if}
+					*}
+					{if Configuration::get('WK_CHECKOUT_DELIVERY_ADDRESS_COMPLEM_REQ')}data-required="1"{else}data-required="0"{/if}
+					{* Adriana - 15/07/2020 - fim *}
+					data-validate="isAddress"
+					type="text"
+					name="wk_delivery_address_complement"
+					id="wk_delivery_address_complement"
+					value="{if isset($delivery_address)}{$delivery_address->address2}{/if}"
+					class="form-control wkvalidatefield">
+				<i class="material-icons wk-check-icon wkhide icon_wk_delivery_address_complement">&#xE876;</i>
+				<i class="material-icons wk-error-icon wkhide error_wk_delivery_address_complement">&#xE001;</i>
+				<span class="help-block wk-error wk_delivery_address_complement"></span>
+			</div>
+			{/if}
+
+			{* Adriana - 15/07/2020 - início *}
+			{if Configuration::get('WK_CHECKOUT_DELIVERY_OTHER_SHOW')}
+			<div class="form-group">
+				<label class="label-control {if Configuration::get('WK_CHECKOUT_DELIVERY_OTHER_REQ')}required{/if}">{l s='Other Information' mod='wkonepagecheckout'}
+				</label>
+				<input
+					maxlength="300"
+					{if Configuration::get('WK_CHECKOUT_DELIVERY_OTHER_REQ')}data-required="1"{else}data-required="0"{/if}
+					data-validate="isMessage"
+					type="text"
+					name="wk_delivery_address_other_information"
+					id="wk_delivery_address_other_information"
+					value="{if isset($delivery_address)}{$delivery_address->other}{/if}"
+					class="form-control wkvalidatefield">
+				<i class="material-icons wk-check-icon wkhide icon_wk_delivery_address_other_information">&#xE876;</i>
+				<i class="material-icons wk-error-icon wkhide error_wk_delivery_address_other_information">&#xE001;</i>
+				<span class="help-block wk-error wk_delivery_address_other_information"></span>
+			</div>
+			{/if}
+			{* Adriana - 15/07/2020 - fim *}
+
+			<div class="form-group">
+				<label class="label-control required">{l s='Country' mod='wkonepagecheckout'}</label>
+				<select
+					data-required="1"
+					data-attr="delivery"
+					name="wk_delivery_address_country"
+					class="form-control wk_address_country">
+					{if isset($countries)}
+						{foreach $countries as $country}
+							<option
+								{if isset($delivery_address)}
+									{if $delivery_address->id_country == $country.id_country}selected="selected"{/if}
+								{else if isset($cartAddress)}
+									{if $cartAddress->id_country == $country.id_country}selected="selected"{/if}
+								{else if $defaultCountry == $country.id_country}selected="selected"{/if}
+								value="{$country.id_country}">{$country.name}</option>
+						{/foreach}
+					{/if}
+				</select>
+			</div>
+
+			<div id="wk-delivery-country-state">
+				{if isset($states) && $states}
+					{block name='wk_delivery_state'}
+						{include file="module:wkonepagecheckout/views/templates/front/content/_partials/wk-delivery-state.tpl"}
+					{/block}
+				{/if}
+			</div>
+
+			<div class="form-group">
+				<label class="label-control required">{l s='City' mod='wkonepagecheckout'}</label>
+				<input
+					maxlength="64"
+					data-required="1"
+					data-validate="isCityName"
+					type="text"
+					name="wk_delivery_address_city"
+					id="wk_delivery_address_city"
+					value="{if isset($delivery_address)}{$delivery_address->city}{/if}"
+					class="form-control wkvalidatefield">
+				<i class="material-icons wk-check-icon wkhide icon_wk_delivery_address_city">&#xE876;</i>
+				<i class="material-icons wk-error-icon wkhide error_wk_delivery_address_city">&#xE001;</i>
+				<span class="help-block wk-error wk_delivery_address_city"></span>
+			</div>
+
+			<div class="form-group">
+				<label class="label-control required">{l s='Zip/Postal Code' mod='wkonepagecheckout'}</label>
+				<input
+					maxlength="12"
+					data-required="1"
+					data-validate="isPostCode"
+					type="text"
+					name="wk_delivery_address_zip"
+					id="wk_delivery_address_zip"
+					value="{if isset($delivery_address)}{$delivery_address->postcode}{/if}"
+					class="form-control wkvalidatefield">
+				<i class="material-icons wk-check-icon wkhide icon_wk_delivery_address_zip">&#xE876;</i>
+				<i class="material-icons wk-error-icon wkhide error_wk_delivery_address_zip">&#xE001;</i>
+				<span class="help-block wk-error wk_delivery_address_zip"></span>
+			</div>
+
+			{if Configuration::get('WK_CHECKOUT_DELIVERY_PHONE_SHOW')}
+			<div class="form-group">
+				<label class="label-control {if Configuration::get('WK_CHECKOUT_DELIVERY_PHONE_REQ')}required{/if}">{l s='Phone' mod='wkonepagecheckout'}
+				</label>
+				<input
+					maxlength="32"
+					{if Configuration::get('WK_CHECKOUT_DELIVERY_PHONE_REQ')}data-required="1"{else}data-required="0"{/if}
+					data-validate="isPhoneNumber"
+					type="text"
+					name="wk_delivery_address_phone"
+					id="wk_delivery_address_phone"
+					value="{if isset($delivery_address)}{$delivery_address->phone}{/if}"
+					class="form-control wkvalidatefield">
+				<i class="material-icons wk-check-icon wkhide icon_wk_delivery_address_phone">&#xE876;</i>
+				<i class="material-icons wk-error-icon wkhide error_wk_delivery_address_phone">&#xE001;</i>
+				<span class="help-block wk-error wk_delivery_address_phone"></span>
+			</div>
+			{/if}
+
+			{if Configuration::get('WK_CHECKOUT_DELIVERY_MOBILE_PHONE_SHOW')}
+			<div class="form-group">
+				<label class="label-control {if Configuration::get('WK_CHECKOUT_DELIVERY_MOBILE_PHONE_REQ')}required{/if}">{l s='Mobile Phone' mod='wkonepagecheckout'}
+				</label>
+				<input
+					maxlength="32"
+					{if Configuration::get('WK_CHECKOUT_DELIVERY_MOBILE_PHONE_REQ')}data-required="1"{else}data-required="0"{/if}
+					data-validate="isPhoneNumber"
+					type="text"
+					name="wk_delivery_address_mobile_phone"
+					id="wk_delivery_address_mobile_phone"
+					value="{if isset($delivery_address)}{$delivery_address->phone}{/if}"
+					class="form-control wkvalidatefield">
+				<i class="material-icons wk-check-icon wkhide icon_wk_delivery_address_mobile_phone">&#xE876;</i>
+				<i class="material-icons wk-error-icon wkhide error_wk_delivery_address_mobile_phone">&#xE001;</i>
+				<span class="help-block wk-error wk_delivery_address_mobile_phone"></span>
+			</div>
+			{/if}
+
+			{* Adriana - 15/07/2020 - início *}
+			{*
+			{if Configuration::get('WK_CHECKOUT_DELIVERY_OTHER_SHOW')}
+			<div class="form-group">
+				<label class="label-control {if Configuration::get('WK_CHECKOUT_DELIVERY_OTHER_REQ')}required{/if}">{l s='Other Information' mod='wkonepagecheckout'}
+				</label>
+				<input
+					maxlength="300"
+					{if Configuration::get('WK_CHECKOUT_DELIVERY_OTHER_REQ')}data-required="1"{else}data-required="0"{/if}
+					data-validate="isMessage"
+					type="text"
+					name="wk_delivery_address_other_information"
+					id="wk_delivery_address_other_information"
+					value="{if isset($delivery_address)}{$delivery_address->phone}{/if}"
+					class="form-control wkvalidatefield">
+				<i class="material-icons wk-check-icon wkhide icon_wk_delivery_address_other_information">&#xE876;</i>
+				<i class="material-icons wk-error-icon wkhide error_wk_delivery_address_other_information">&#xE001;</i>
+				<span class="help-block wk-error wk_delivery_address_other_information"></span>
+			</div>
+			{/if}
+			*}
+			{* Adriana - 15/07/2020 - fim *}
+
+			<div class="form-group" style="text-align: right;">
+				{hook h='displayGDPRConsent' mod='psgdpr' id_module=$id_module}
+				<button type="submit" data-type="delivery" class="btn btn-primary wk-save-address">
+					{l s='Save' mod='wkonepagecheckout'}
+				</button>
+				<div class="wkhide wk_text-light wkbotton" id="wk-msg-new-delivery"></div>
+			</div>
+		</form>
+	</div>
+</div>

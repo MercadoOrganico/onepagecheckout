@@ -1,0 +1,195 @@
+{**
+* 2010-2020 Webkul.
+*
+* NOTICE OF LICENSE
+*
+* All right is reserved,
+* Please go through this link for complete license : https://store.webkul.com/license.html
+*
+* DISCLAIMER
+*
+* Do not edit or add to this file if you wish to upgrade this module to newer
+* versions in the future. If you wish to customize this module for your
+* needs please refer to https://store.webkul.com/customisation-guidelines/ for more information.
+*
+*  @author    Webkul IN <support@webkul.com>
+*  @copyright 2010-2020 Webkul IN
+*  @license   https://store.webkul.com/license.html
+*}
+
+<div id="wk-order-summary-ajax" class="clearfix">
+	<article class="wk-box box">
+		<div class="wk-heading-img">
+			<div class="wk-order-icon wk-sprit wk-left"></div>
+			<h4 class="wk-left">{l s='Order Summary' mod='wkonepagecheckout'}</h4>
+		</div>
+		<div class="col-md-12 col-sm-12 col-xs-12 wk-padding-0">
+			<ul class="wk-cart-items clearfix">
+				<li class="wk-order-product col-sm-12 col-xs-12">
+					<div class="wk-product-info col-md-6 col-sm-6 col-xs-12">
+						<div class="wk-product-img">
+							<span>{l s='Image' mod='wkonepagecheckout'}</span>
+						</div>
+					</div>
+					<div class="wk-product-info wk-flex-3 col-md-6 col-sm-6 col-xs-12">
+						<div class="wk-product-img">
+							<span>{l s='Description' mod='wkonepagecheckout'}</span>
+						</div>
+					</div>
+					<div class="wk-product-info col-md-2 col-sm-2 col-xs-12">
+						<span>{l s='Quantity' mod='wkonepagecheckout'}</span>
+					</div>
+					{*<div class="col-md-2 col-sm-2 col-xs-12">
+						<span>
+							{l s='Unit price' mod='wkonepagecheckout'}<br>
+								{if $group == 1}
+									{l s='(tax excl.)' mod='wkonepagecheckout'}
+								{else if $group == 0}
+									{l s='(tax incl.)' mod='wkonepagecheckout'}
+								{/if}
+						</span>
+					</div>*}
+					<div class="col-md-2 col-sm-2 col-xs-12">
+						<span>{l s='Total' mod='wkonepagecheckout'}</span>
+					</div>
+					<div class="col-md-2 col-sm-2 col-xs-12">
+						<span>{l s='Action' mod='wkonepagecheckout'}</span>
+					</div>
+				</li>
+				{if isset($cart.products)}
+					{foreach $cart.products as $product}
+						<li class="wk-order-product col-sm-12 col-xs-12">
+							<div class="product-line-grid-left col-md-2 col-xs-3">
+								<div class="wk-product-img wk-left product-cover">
+									{if isset($product.cover) && $product.cover}
+										<img
+											class="js-qv-product-cover"
+											{if Configuration::get('WK_CHECKOUT_PRODUCT_IMAGE') == '1'}
+											width="50" heigth="50"
+											{else if Configuration::get('WK_CHECKOUT_PRODUCT_IMAGE') == '2'}
+											width="80" heigth="80"
+											{else if Configuration::get('WK_CHECKOUT_PRODUCT_IMAGE') == '3'}
+											width="100" heigth="100"
+											{else}
+											width="70" heigth="70"
+											{/if}
+											src="{$product.cover.small.url}">
+											<div class="layer hidden-sm-down" data-toggle="modal" data-target="#wk-product-modal-{$product.id_product}">
+												<i class="material-icons zoom-in">&#xE8FF;</i>
+											</div>
+									{else}
+										<img
+											{if Configuration::get('WK_CHECKOUT_PRODUCT_IMAGE') == '1'}
+											width="50" heigth="50"
+											{else if Configuration::get('WK_CHECKOUT_PRODUCT_IMAGE') == '2'}
+											width="80" heigth="80"
+											{else if Configuration::get('WK_CHECKOUT_PRODUCT_IMAGE') == '3'}
+											width="100" heigth="100"
+											{else}
+											width="70" heigth="70"
+											{/if}
+											class="product-image"
+											src="{$wk_opc_modules_dir}img/en.jpg"
+											itemprop="image">
+									{/if}
+								</div>
+							</div>
+							<div class="product-line-grid-body wk-flex-3 col-md-4 col-xs-8">
+								<div class="wk-product-detail wk-left js-product-miniature"
+									data-id-product-attribute="{$product.id_product_attribute}"
+									data-id-product="{$product.id_product}">
+									<div class="product-line-info">
+										<a class="quick-view label" data-link-action="quickview" data-id-product-attribute="{$product.id_product_attribute}" data-id-product="{$product.id_product}" href="javascript:void(0);" title="{l s='Change Combination' mod='wkonepagecheckout'}">
+										<span>{$product.name}</span></a>
+									</div>
+									{if isset($product.attributes)}
+										{foreach $product.attributes as $key => $value}
+											<div>
+												<span class="wk-attribute">{$key}:</span>
+												<span class="wk-attribute-value">{$value}</span>
+											</div>
+										{/foreach}
+									{/if}
+                                    <div class="product-price">
+                                        {if isset($product.price)}
+                                            <span>{$product.price}</span>
+                                        {/if}
+								    </div>
+
+									{include file='module:wkonepagecheckout/views/templates/front/content/_partials/wk_cart_product_customization.tpl'}
+									<br/>
+									<div class="wk-product-link"><a target="_blank" href="{$product.url}" >{l s='More Detail' mod='wkonepagecheckout'}</a></div>
+								</div>
+							</div>
+							<div class="wk-product-info col-md-2 col-sm-3 col-xs-12">
+								<div class="bootstrap-touchspin wk-display-flex wk-qty-info">
+									<input data-id-product-attribute="{$product.id_product_attribute}" data-id-product="{$product.id_product}" value="{if isset($product.cart_quantity)}{$product.cart_quantity}{/if}" class="wk-hidden-qty form-control" type="hidden" id="wk-cart-hidden-qty" min="1"/>
+									<input data-id-product-attribute="{$product.id_product_attribute}" data-id-product="{$product.id_product}" value="{if isset($product.cart_quantity)}{$product.cart_quantity}{/if}" class="wk-qty form-control" type="text" name="wk-cart-qty" min="1" data-id-customization="{if isset($product.id_customization)}{$product.id_customization}{else}0{/if}" readonly="readonly"/>
+									<span class="input-group-btn-vertical">
+										<button type="button" class="btn btn-touchspin wk-qty-up">
+											<i class="material-icons touchspin-up"></i>
+										</button>
+										<button type="button" class="btn btn-touchspin bootstrap-touchspin-down wk-qty-down">
+											<i class="material-icons touchspin-down"></i>
+										</button>
+									</span>
+								</div>
+							</div>
+							{*<div class="col-md-2 col-sm-2 col-xs-12">
+								<span class="product-price">
+									{if isset($product.price)}
+										<span>{$product.price}</span>
+									{/if}
+								</span>
+							</div>*}
+							<div class="col-md-2 col-sm-3 col-xs-12">
+								<span class="product-price">
+									{if isset($product.total)}
+										<span>{$product.total}</span>
+									{/if}
+								</span>
+							</div>
+							<div class="col-md-2 col-sm-3 col-xs-12 wk-delete-qty">
+								<div class="cart-line-product-actions">
+									<a
+										title="{l s='Delete' mod='wkonepagecheckout'}"
+										id="wk-remove-cart"
+										data-id-product-attribute="{$product.id_product_attribute}"
+										data-id-product="{$product.id_product}" href="javascript:void(0);"
+										data-quantity="{$product.cart_quantity}"
+										data-id-customization="{if isset($product.id_customization)}{$product.id_customization}{else}0{/if}"
+										class="remove-from-cart wk-left">
+										<i class="material-icons pull-xs-left">delete</i>
+									</a>
+									{if Configuration::get('WK_CHECKOUT_CART_SAVE_LATER') && $customer.is_logged}
+									<a
+										title="{l s='Save for later' mod='wkonepagecheckout'}"
+										id="wk-cart-save"
+										data-id-product-attribute="{$product.id_product_attribute}"
+										data-id-product="{$product.id_product}"
+										data-quantity="{$product.cart_quantity}"
+										data-id-customization="{if isset($product.id_customization)}{$product.id_customization}{else}0{/if}"
+										href="javascript:void(0);"
+										class="remove-from-cart wk-left">
+										<i class="material-icons">&#xE8B5;</i>
+									</a>
+									{/if}
+								</div>
+							</div>
+						</li>
+						{block name='product_images_modal'}
+							{include file='module:wkonepagecheckout/views/templates/front/content/_partials/wk-product-image-modal.tpl'}
+						{/block}
+					{/foreach}
+				{/if}
+			</ul>
+		<div class="wkhide wkerrorcolor wkorder_error"></div>
+		</div>
+		<p class="wkstyle"></p>
+		{block name='wk-order-total'}
+			{include file='module:wkonepagecheckout/views/templates/front/content/_partials/wk_order_total.tpl'}
+		{/block}
+		<div id="wkorder-summary"></div>
+	</article>
+	<p class="wkstyle"></p>
+</div>

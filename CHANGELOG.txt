@@ -1,0 +1,79 @@
+-------------------------
+ChangeLog V4.2.1 - V4.2.2
+-------------------------
+
+Bug fix:
+- 'Newslatters' typo fixed in translation file
+- Feature removed from CHANGELOG files
+- Text issue fixed
+- Checkout page column wrapped in row
+- responsiveness fixed
+- Min cart amount check added
+- shiping code like ps core added
+- extraContent & displayBeforeCarrier hook added
+- wkmycart controller translation issue fixed
+
+Improvement:
+- Unit price (tax excl.) removed from cart page, very less pl
+- Login/Registration Page design improved
+- class removed: wk-text-light, wkpadding, wk-left, wk-text-bold, wkformcontrol, wk-rm-padding,
+wkmargin_right, wk-payment-img
+- wk_mycart.css file deleted, not in use
+- wk-customer.css and wk-validation.css merged in wkcheckout.css
+- wkleft css class removed from BO config
+- wk-rm-padding css class removed from BO config
+- License year updated to 2020
+
+
+-------------------------
+ChangeLog V4.2.0 - V4.2.1
+-------------------------
+
+Bug Fix:
+- font issue
+- typo fixed
+- trans() removed
+- required (*) removed
+- PS Native Payment method display
+- Page responsiveness
+- Product added in the cart and its quantity gets changed to 0.
+- Login by same customer in different tab
+- On facebook icon click, console error if facebook is disabled.
+- Replace alert with growl messag display
+- Update tab name from "Configure One Page Checkout" to "One Page Checkout"
+- Remove string from js file and make it translatable.
+
+Improvement:
+- License year updated to 2019
+- install file deleted
+- install.sql removed
+- Free Products
+- Virtual Product compatibility
+- GDPR Integration
+
+-------------------------
+ChangeLog V4.1.0 - V4.2.0
+-------------------------
+
+Bug Fixed
+- As soon as new invoice form open, if country has state then it was not showing, Fixed
+- If any product quantity get over and that product is already added by customer into cart then final payment will prevent that order
+
+-------------------------
+ChangeLog V4.1.0 - V4.1.1
+-------------------------
+
+Bug Fixed
+- Carrier method will be based on id_zone instead of id_country and id_state
+
+-------------------------
+ChangeLog V4.0.0 - V4.1.0
+-------------------------
+
+New Feaures
+-  Dynamic social title added
+-  New tab in shop paramter to configure module setting instead of going on module section to find out configuration
+
+Bug Fixed
+- Payment method issue for guest checkout
+- Tax information on order summary page

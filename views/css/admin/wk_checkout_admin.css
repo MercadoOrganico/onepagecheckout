@@ -1,0 +1,49 @@
+/**
+* 2010-2020 Webkul.
+*
+* NOTICE OF LICENSE
+*
+* All right is reserved,
+* Please go through this link for complete license : https://store.webkul.com/license.html
+*
+* DISCLAIMER
+*
+* Do not edit or add to this file if you wish to upgrade this module to newer
+* versions in the future. If you wish to customize this module for your
+* needs please refer to https://store.webkul.com/customisation-guidelines/ for more information.
+*
+*  @author    Webkul IN <support@webkul.com>
+*  @copyright 2010-2020 Webkul IN
+*  @license   https://store.webkul.com/license.html
+*/
+
+#wk-checkout-config {
+    margin-bottom: 20px;
+}
+#wk-checkout-config li.active a {
+    background-color: #00aff0;
+    border-color: #00aff0;
+    color: #fff;
+    text-transform: uppercase;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.125) inset;
+    outline: 0 none;
+    cursor: pointer;
+}
+
+#wk-checkout-config li.active a:hover {
+    background-color: #008abd;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    outline-offset: -2px;
+    border-color: #eee #eee #ddd;
+    text-decoration: none;
+}
+.wkhide {
+    display: none;
+}
+label.custom_checkbox {
+    margin-right: 20px;
+}
+label.custom_checkbox span {
+    padding: 3px;
+}
