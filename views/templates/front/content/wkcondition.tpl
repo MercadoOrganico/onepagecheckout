@@ -17,54 +17,93 @@
 *  @license   https://store.webkul.com/license.html
 *}
 
+{* Vinícius - 07/07/2021 - Início *}
+<style>
+    @media (max-width: 576px) {
+
+        .zipvalidatorhide {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+
+        .float-xs-left {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .wk-box .wk-condition {
+            margin: 0;
+        }
+
+        #dor-footer02 {
+            padding-top: 0;
+        }
+
+        #wk-payment-confirmation {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+    }
+</style>
+{* Vinícius - 07/07/2021 - Fim *}
+
 <div class="wk-condition wk-box">
     <div id="hook-display-after-payment-options">
         {hook h='displayAfterPaymentOptions'}
     </div>
     <article class="col-md-12 wkpadding" id="zipvalidatorhide">
-    {if $conditions_to_approve|count}
-        <p class="ps-hidden-by-js">
-            {l s='By confirming the order, you certify that you have read and agree with all of the conditions below:' mod='wkonepagecheckout'}
-        </p>
-        <form id="conditions-to-approve" method="GET">
-            <ul>
-            {foreach from=$conditions_to_approve item="condition" key="condition_name"}
-                <li>
-                    <div class="float-xs-left">
-                        <span class="custom-checkbox">
-                            <input
-                                id="conditions_to_approve[{$condition_name}]"
-                                name="conditions_to_approve[{$condition_name}]"
-                                required
-                                type="checkbox"
-                                value="1"
-                                class="ps-shown-by-js wk-condition-check"
-                                checked="checked"
-                                >
-                            <span><i class="material-icons checkbox-checked">&#xE5CA;</i></span>
-                        </span>
-                    </div>
-                    <div class="condition-label">
-                        <label class="js-terms" for="conditions_to_approve[{$condition_name}]">{$condition nofilter}</label>
-                    </div>
-                </li>
-            {/foreach}
-            </ul>
-        </form>
-    {/if}
-    <div id="wk-payment-confirmation">
-        <div class="ps-shown-by-js">
-            <button type="submit" class="btn btn-primary center-block wkcustomizerbtn" {if isset($extra_msg) && $extra_msg} disabled {/if}>
-                {l s='Order with an obligation to pay' mod='wkonepagecheckout'}
-            </button>
+        {if $conditions_to_approve|count}
+            <p class="ps-hidden-by-js">
+                {l s='By confirming the order, you certify that you have read and agree with all of the conditions below:' mod='wkonepagecheckout'}
+            </p>
+            <form id="conditions-to-approve" method="GET">
+                <ul>
+                    {foreach from=$conditions_to_approve item="condition" key="condition_name"}
+                        <li>
+                            <div class="float-xs-left">
+                                <span class="custom-checkbox">
+                                    <input id="conditions_to_approve[{$condition_name}]"
+                                        name="conditions_to_approve[{$condition_name}]" required type="checkbox" value="1"
+                                        class="ps-shown-by-js wk-condition-check" checked="checked">
+                                    <span><i class="material-icons checkbox-checked">&#xE5CA;</i></span>
+                                </span>
+                            </div>
+                            <div class="condition-label">
+                                <label class="js-terms"
+                                    for="conditions_to_approve[{$condition_name}]">{$condition nofilter}</label>
+                            </div>
+                        </li>
+                    {/foreach}
+                </ul>
+            </form>
+        {/if}
+        <div id="wk-payment-confirmation">
+            <div class="ps-shown-by-js">
+                <button type="submit" class="btn btn-primary center-block wkcustomizerbtn"
+                    {if isset($extra_msg) && $extra_msg} disabled {/if}>
+                    {l s='Order with an obligation to pay' mod='wkonepagecheckout'}
+                </button>
+            </div>
         </div>
-    </div>
 
-    {* Danger : - Dont't alter this div, we have used this div to append prestashop button to make payment *}
-    <div class="wk_ps_payment_button wkhide"></div>
-    {*  *}
+        {* Danger : - Dont't alter this div, we have used this div to append prestashop button to make payment *}
+        <div class="wk_ps_payment_button wkhide"></div>
+        {*  *}
 
-    <div id="wkcondition_info"></div>
+        <div id="wkcondition_info"></div>
     </article>
 </div>
 
@@ -81,11 +120,10 @@
     </div>
 </div>
 <style>
-.wkcustomizerbtn {
-    background-color : {Configuration::get('WK_CHECKOUT_BUTTON_COLOR')} !important;
-    font-size: {Configuration::get('WK_CHECKOUT_BUTTON_FONT_SIZE')}px !important;
-    color: {Configuration::get('WK_CHECKOUT_BUTTON_FONT_COLOR')} !important;
-    font-family: {$fontfamily} !important;
-}
-
+    .wkcustomizerbtn {
+        background-color : {Configuration::get('WK_CHECKOUT_BUTTON_COLOR')} !important;
+        font-size: {Configuration::get('WK_CHECKOUT_BUTTON_FONT_SIZE')}px !important;
+        color: {Configuration::get('WK_CHECKOUT_BUTTON_FONT_COLOR')} !important;
+        font-family: {$fontfamily} !important;
+    }
 </style>
