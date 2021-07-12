@@ -17,26 +17,16 @@
 *  @license   https://store.webkul.com/license.html
 *}
 
-{* Vinícius - 07/07/2021 - Início *}
-<style>
-    @media (max-width: 576px) {
-        .wk-shipping-carriers {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            text-align: center;
-        }
-    }
-</style>
-{* Vinícius - 07/07/2021 - Fim *}
-
 <div class="wk-shipping-carriers">
     <div class="wk-heading-img">
-        <div class="wk-shipping-icon wk-sprit wk-left"></div>
-        <h4 class="wk-left">{l s='Shipping Method' mod='wkonepagecheckout'}</h4>
-        <div class="wkerrorcolor wkhide wk-left" id="wkshipping-error" style="margin-left:25px;"></div>
+    {* Vinícius - 07/07/2021 - Início *}
+    {* <div class="wk-shipping-icon wk-sprit wk-left"></div> *}
+        <div class="wk-shipping-icon wk-sprit"></div>
+        {* <h4 class="wk-left">{l s='Shipping Method' mod='wkonepagecheckout'}</h4> *}
+        <h4>{l s='Shipping Method' mod='wkonepagecheckout'}</h4>
+        {* <div class="wkerrorcolor wkhide wk-left" id="wkshipping-error" style="margin-left:25px;"></div> *}
+        <div class="wkerrorcolor wkhide" id="wkshipping-error"></div>
+        {* Vinícius - 07/07/2021 - Fim *}
     </div>
     {* comentado para alterar o momento de valida��o do zipcode *}
     <div id="hook-display-before-carrier">

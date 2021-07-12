@@ -210,6 +210,9 @@
 .wk-sprit {
     height: 30px;
     width: 30px;
+    /* Vinícius - 08/07/2021 - Início */
+    margin-right: 10px;
+    /* Vinícius - 08/07/2021 - Fim */
 }
 
 .wk-user-icon {
@@ -232,15 +235,21 @@
     margin-bottom: 15px;
 }
 
+/* Vinícius - 08/07/2021 - Início */
 .wk-heading-img {
-    float: left;
+    /* float: left;
     width: 100%;
-    margin-bottom: 10px;
+    margin-bottom: 10px; */
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
-.wk-heading-img h4 {
+/* .wk-heading-img h4 {
     padding: 5px;
-}
+} */
+/* Vinícius - 08/07/2021 - Fim */
 
 .wk-condition {
     margin-top: 20px;
@@ -819,9 +828,13 @@ li.wk-order-product.col-sm-12.col-xs-12 > div {
 #wk_shipping_section, #wk_payment_section {
     padding: 0 15px;
 }
+
+/* Vinícius - 08/07/2021 - Início */
 #wk_shipping_section .wk-heading-img, #wk_payment_section .wk-heading-img {
-    margin-left: -15px;
+    /* margin-left: -15px; */
+    margin-bottom: 20px;
 }
+/* Vinícius - 08/07/2021 - Fim */
 
 /* Adriana - 21/09/2020 - início */
 /*
@@ -967,3 +980,182 @@ label.js-terms {
     content:"";display:table;clear:both;
 }
 /* Adriana - 21/09/2020 - fim */
+
+/* Vinícius - 08/07/2021 - Início */
+@media (min-width: 577px) {
+
+    .checkout-product-container-mobile {
+        display: none;
+    }
+
+}
+
+@media (max-width: 576px) {
+    
+    .wkrelativeposition {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .wk-heading-img {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    
+    .user-info-container {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .zipvalidatorhide {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .float-xs-left {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .wk-box .wk-condition {
+        margin: 0;
+    }
+
+    #dor-footer02 {
+        padding-top: 0;
+    }
+
+    #wk-payment-confirmation {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .checkout-product-container-web {
+        display: none;
+    }
+
+    .checkout-product-container-mobile {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+    }
+
+    .mobile-display-none {
+        display: none;
+    }
+
+    .wk-order-product {
+        padding: 0;
+        background-color: white;
+    }
+
+    .wk-checkout-left-column {
+        padding: 0;
+    }
+
+    .checkout-product-content-1 {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+    }
+
+    .checkout-product-content-2 {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .mobile-flex-column {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .wk-qty-info {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        flex-direction: center;
+        align-items: center;
+    }
+
+    .wk-qty-info>input {
+        width: 50px !important;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .img {
+        border: 2px solid #00703F;
+        border-radius: 5px;
+    }
+
+    .wk-shipping-carriers {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        text-align: center;
+    }
+
+    .wk-two-cols {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: space-between;
+    }
+
+    .price-color-column {
+        width: 100%;
+        background-color: #00703F;
+        color: white;
+        height: 25px;
+        align-items: center;
+        font-weight: bold;
+        padding-top: 4px;
+    }
+
+    #wk-voucher {
+        margin-bottom: 10px;
+    }
+
+    .wk-payment-list {
+		margin-bottom: 0;
+	}
+    
+}
+/* Vinícius - 08/07/2021 - Fim */

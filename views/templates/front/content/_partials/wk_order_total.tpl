@@ -17,34 +17,6 @@
 *  @license   https://store.webkul.com/license.html
 *}
 
-{* Vinícius - 07/07/2021 - Início *}
-<style>
-    @media (max-width: 576px) {
-        .wk-two-cols {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: space-between;
-        }
-
-        .price-color-column {
-            width: 100%;
-            background-color: #00703F;
-            color: white;
-            height: 25px;
-            align-items: center;
-            font-weight: bold;
-            padding-top: 4px;
-        }
-
-        #wk-voucher {
-            margin-bottom: 10px;
-        }
-    }
-</style>
-{* Vinícius - 07/07/2021 - Fim *}
-
 <div class="wk-order-total col-md-12 col-sm-12">
     <div class="row">
         <div class="wk-two-row-padding">

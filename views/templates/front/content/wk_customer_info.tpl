@@ -17,37 +17,6 @@
 *  @license   https://store.webkul.com/license.html
 *}
 
-{* Vinícius - 07/07/2021 - Início *}
-<style>
-    @media (max-width: 576px) {
-
-        .wkrelativeposition {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .wk-heading-img {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .user-info-container {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-
-    }
-</style>
-{* Vinícius - 07/07/2021 - Fim *}
-
 <article class="box wkrelativeposition">
 
     <div class="wk-heading-img">
